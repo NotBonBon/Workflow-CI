@@ -64,16 +64,12 @@ jobs:
           name: mlruns
           path: mlruns/
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-
       - name: Tag Docker Image
         run: |
           docker tag lstm_model_nvda_stock ${{ secrets.DOCKER_HUB_USERNAME }}/lstm_model_nvda_stock:latest
-      
-      - name: Push Docker Image
+
+      - name: Verify Docker Login & Images
         run: |
+          docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+          docker images
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/lstm_model_nvda_stock:latest
