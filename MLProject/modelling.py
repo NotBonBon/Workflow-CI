@@ -13,7 +13,7 @@ if __name__ == "__main__":
   train_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "NVDA_Stock_Preprocessing/train_set")
   test_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "NVDA_Stock_Preprocessing/test_set")
   
-  with mlflow.start_run():
+  with mlflow.start_run(nested=True):
     mlflow.log_param("window_size", 60)
     mlflow.log_param("lstm_units", lstm_units)
     mlflow.log_param("num_lstm_layers", 2)
