@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
  
 env:
   TRAIN_PATH: "MLproject/NVDA_Stock_Preprocessing/train_set"
@@ -45,13 +45,13 @@ jobs:
           mlflow run MLproject --env-manager=local 
  
       # Save models to GitHub Repository
-      - name: Save mlruns to repo
-        run: |
-          git config --global user.name ${{ secrets.username }}
-          git config --global user.email ${{ secrets.email }}
-          git add mlruns/
-          git commit -m "Save mlruns from CI run"
-          git push origin main
+      # - name: Save mlruns to repo
+      #   run: |
+      #     git config --global user.name ${{ secrets.username }}
+      #     git config --global user.email ${{ secrets.email }}
+      #     git add mlruns/
+      #     git commit -m "Save mlruns from CI run"
+      #     git push origin master
 
       - name: Upload mlruns
         uses: actions/upload-artifact@v4
