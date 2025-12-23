@@ -11,7 +11,6 @@ on:
 env:
   TRAIN_PATH: "MLProject/NVDA_Stock_Preprocessing/train_set"
   TEST_PATH: "MLProject/NVDA_Stock_Preprocessing/test_set"
-  MLFLOW_TRACKING_URI: "file://${{ github.workspace }}/mlruns"
  
 jobs:
   build:

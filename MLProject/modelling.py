@@ -12,8 +12,6 @@ if __name__ == "__main__":
 
   train_path = os.environ.get("TRAIN_PATH")
   test_path = os.environ.get("TEST_PATH")
-
-  mlflow.set_tracking_uri(os.environ.get("MLFLOW_URI"))
   
   with mlflow.start_run():
     mlflow.log_param("window_size", 60)
