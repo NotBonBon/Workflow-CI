@@ -29,7 +29,7 @@ if __name__ == "__main__":
   
   mlflow.set_tracking_uri(f"file://{os.getcwd()}/mlruns")
 
-  with mlflow.start_run():
+  with mlflow.start_run(nested=True):
     mlflow.log_param("window_size", 60)
     mlflow.log_param("lstm_units", lstm_units)
     mlflow.log_param("num_lstm_layers", 2)
