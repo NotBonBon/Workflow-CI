@@ -11,6 +11,7 @@ on:
 env:
   TRAIN_PATH: "MLProject/NVDA_Stock_Preprocessing/train_set"
   TEST_PATH: "MLProject/NVDA_Stock_Preprocessing/test_set"
+  MLFLOW_TRACKING_URI: "file://${{ github.workspace }}/mlruns"
  
 jobs:
   build:
@@ -26,6 +27,12 @@ jobs:
         with:
           python-version: "3.12.3"
  
+      # Check Env Variables
+      - name: Check Env
+        run: |
+          echo $TRAIN_PATH
+          echo $TEST_PATH
+
       # Install mlflow
       - name: Install dependencies
         run: |
@@ -36,11 +43,11 @@ jobs:
       # Run as a mlflow project
       - name: Run mlflow project
         run: |
-          python MLProject/modelling.py 30 30
+          python MLProject/modelling.py 60 60
 
       - name: Get latest MLflow run_id
         run: |
-          RUN_ID=$(ls -td mlruns/0/*/ | grep -v models | head -n 1 | awk -F'/' '{print $(NF-1)}')
+          RUN_ID=$(ls -td mlruns/0/*/ | head -n 1 | cut -d'/' -f3)
           echo "RUN_ID=$RUN_ID" >> $GITHUB_ENV
           echo "Latest run_id: $RUN_ID"
 
