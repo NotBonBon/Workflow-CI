@@ -21,11 +21,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE
       - uses: actions/checkout@v3
  
-      # Setup Python 3.12.3
-      - name: Set up Python 3.12.3
+      # Setup Python 3.12.7
+      - name: Set up Python 3.12.7
         uses: actions/setup-python@v4
         with:
-          python-version: "3.12.3"
+          python-version: "3.12.7"
  
       # Check Env Variables
       - name: Check Env
@@ -43,7 +43,7 @@ jobs:
       # Run as a mlflow project
       - name: Run mlflow project
         run: |
-          python MLProject/modelling.py 60 60
+          mlflow run MLproject --env-manager=local
 
       - name: Get latest MLflow run_id
         run: |
