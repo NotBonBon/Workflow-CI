@@ -28,10 +28,17 @@ jobs:
           python-version: "3.12.7"
  
       # Check Env Variables
-      - name: Check Env
+      # - name: Check Env
+      #   run: |
+      #     echo $TRAIN_PATH
+      #     echo $TEST_PATH
+
+      - name: Debug paths
         run: |
-          echo $TRAIN_PATH
-          echo $TEST_PATH
+          pwd
+          ls
+          ls MLProject || echo "MLProject does NOT exist"
+          ls MLproject || echo "MLproject does NOT exist"
 
       # Install mlflow
       - name: Install dependencies
